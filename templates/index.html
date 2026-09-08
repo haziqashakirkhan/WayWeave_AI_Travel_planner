@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Wayweave — AI Travel Planner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet"
+>
+
+<link rel="stylesheet" href="/static/style.css">
+```
+
+</head>
+
+<body>
+
+<div class="page">
+
+```
+<header class="header">
+
+    <a href="/" class="brand">
+        <div class="brand-logo">W</div>
+
+        <div class="brand-copy">
+            <span class="brand-name">Wayweave</span>
+            <span class="brand-tagline">
+                thoughtful travel, shaped around you
+            </span>
+        </div>
+    </a>
+
+    <div class="header-status">
+        <span class="status-dot"></span>
+        Gemini-powered travel planning
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <span class="eyebrow">YOUR NEXT JOURNEY</span>
+
+        <h1>
+            Plan somewhere<br>
+            <span>worth remembering.</span>
+        </h1>
+
+        <p>
+            Tell us what matters to you and Wayweave will shape
+            a thoughtful journey around your time, budget and interests.
+        </p>
+
+    </section>
+
+
+    <section class="workspace">
+
+        <div class="planner">
+
+            <form id="travelForm">
+
+                <section class="form-section">
+
+                    <div class="section-title">
+                        <span>01</span>
+
+                        <div>
+                            <h2>Tell us about you</h2>
+                            <p>A little context helps us plan better.</p>
+                        </div>
+                    </div>
+
+                    <div class="field">
+
+                        <label for="name">Your name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="e.g. Haziqa"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                </section>
+
+
+                <section class="form-section">
+
+                    <div class="section-title">
+                        <span>02</span>
+
+                        <div>
+                            <h2>Where are you going?</h2>
+                            <p>Give us the basics of your trip.</p>
+                        </div>
+                    </div>
+
+                    <div class="field">
+
+                        <label for="destination">Destination</label>
+
+                        <input
+                            type="text"
+                            id="destination"
+                            name="destination"
+                            placeholder="e.g. Istanbul"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field-row">
+
+                        <div class="field">
+
+                            <label for="days">Travel days</label>
+
+                            <input
+                                type="number"
+                                id="days"
+                                name="days"
+                                min="1"
+                                max="30"
+                                placeholder="5"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="budget">Budget</label>
+
+                            <div class="currency-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="budget"
+                                    name="budget"
+                                    min="1"
+                                    step="1"
+                                    placeholder="1000"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="form-section">
+
+                    <div class="section-title">
+                        <span>03</span>
+
+                        <div>
+                            <h2>What do you enjoy?</h2>
+                            <p>Select as many as you like.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="interest-grid">
+
+                        <button
+                            type="button"
+                            class="interest-button"
+                            data-interest="Adventure"
+                        >
+                            <span>Adventure</span>
+                            <span>+</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="interest-button"
+                            data-interest="Food"
+                        >
+                            <span>Food</span>
+                            <span>+</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="interest-button"
+                            data-interest="Nature"
+                        >
+                            <span>Nature</span>
+                            <span>+</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="interest-button"
+                            data-interest="Shopping"
+                        >
+                            <span>Shopping</span>
+                            <span>+</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="interest-button"
+                            data-interest="History"
+                        >
+                            <span>History</span>
+                            <span>+</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="interest-button"
+                            data-interest="Art & Culture"
+                        >
+                            <span>Art & Culture</span>
+                            <span>+</span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <section class="form-section">
+
+                    <div class="section-title">
+                        <span>04</span>
+
+                        <div>
+                            <h2>Who's coming along?</h2>
+                            <p>We'll adjust the pace and activities.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="travel-style">
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="travel_style"
+                                value="Solo"
+                                checked
+                            >
+
+                            <span class="radio-card">
+                                <strong>Solo</strong>
+                                <small>Just me</small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="travel_style"
+                                value="Family"
+                            >
+
+                            <span class="radio-card">
+                                <strong>Family</strong>
+                                <small>With family</small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="travel_style"
+                                value="Friends"
+                            >
+
+                            <span class="radio-card">
+                                <strong>Friends</strong>
+                                <small>With friends</small>
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <section class="form-section">
+
+                    <div class="section-title">
+                        <span>05</span>
+
+                        <div>
+                            <h2>How should we plan?</h2>
+                            <p>Compare three Gemini prompting techniques.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="methods">
+
+                        <button
+                            type="button"
+                            class="method-card active"
+                            data-method="zero-shot"
+                        >
+
+                            <span class="method-number">01</span>
+
+                            <span class="method-content">
+                                <strong>Zero-Shot</strong>
+                                <small>
+                                    Direct instructions with no examples.
+                                </small>
+                            </span>
+
+                            <span class="method-check">✓</span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="method-card"
+                            data-method="few-shot"
+                        >
+
+                            <span class="method-number">02</span>
+
+                            <span class="method-content">
+                                <strong>Few-Shot</strong>
+                                <small>
+                                    Uses examples to guide the response.
+                                </small>
+                            </span>
+
+                            <span class="method-check">✓</span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="method-card"
+                            data-method="structured"
+                        >
+
+                            <span class="method-number">03</span>
+
+                            <span class="method-content">
+                                <strong>Structured Reasoning</strong>
+                                <small>
+                                    Organizes constraints before planning.
+                                </small>
+                            </span>
+
+                            <span class="method-check">✓</span>
+
+                        </button>
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        id="prompting_method"
+                        value="zero-shot"
+                    >
+
+                </section>
+
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                    id="submitButton"
+                >
+                    <span id="submitText">Weave my journey</span>
+                    <span class="submit-icon">→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <aside class="results">
+
+            <div class="results-top">
+
+                <div>
+                    <span class="results-eyebrow">YOUR JOURNEY</span>
+                    <h2>Your itinerary</h2>
+                </div>
+
+                <span
+                    class="method-badge"
+                    id="resultMethod"
+                >
+                    Zero-Shot
+                </span>
+
+            </div>
+
+
+            <div class="results-body">
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div class="empty-symbol">W</div>
+
+                    <h3>
+                        Your journey<br>
+                        starts here.
+                    </h3>
+
+                    <p>
+                        Complete your preferences on the left.
+                        Your personalized itinerary will appear here.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="loading-state"
+                    id="loadingState"
+                    hidden
+                >
+
+                    <div class="loading-symbol">W</div>
+
+                    <h3>Weaving your journey...</h3>
+
+                    <p>
+                        Gemini is considering your preferences.
+                    </p>
+
+                    <div class="loading-track">
+                        <div class="loading-bar"></div>
+                    </div>
+
+                </div>
+
+
+                <article
+                    class="itinerary"
+                    id="itinerary"
+                    hidden
+                ></article>
+
+
+                <div
+                    class="error-state"
+                    id="errorState"
+                    hidden
+                >
+
+                    <div class="error-symbol">!</div>
+
+                    <h3>Something went wrong.</h3>
+
+                    <p id="errorMessage">
+                        Please try again.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="retryButton"
+                        class="retry-button"
+                    >
+                        Try again
+                    </button>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <span>WAYWEAVE</span>
+
+    <span>Built with Gemini · FastAPI</span>
+
+</footer>
+```
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
+
