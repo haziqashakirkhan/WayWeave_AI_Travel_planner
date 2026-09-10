@@ -1,3 +1,4 @@
+import asyncio
 import os
 
 from dotenv import load_dotenv
@@ -18,7 +19,7 @@ load_dotenv()
 
 
 API_KEY = os.getenv("GEMINI_API_KEY")
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.7-flash")
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
 
 if not API_KEY:
@@ -92,30 +93,51 @@ async def generate_plan(data: TravelRequest):
         travel_style=data.travel_style.strip(),
     )
 
-    try:
-        response = client.models.generate_content(
-            model=MODEL_NAME,
-            contents=prompt,
-        )
+    models_to_try = [MODEL_NAME]
+    if "gemini-3.6-flash" not in models_to_try:
+        models_to_try.append("gemini-3.6-flash")
 
-        itinerary = response.text
+    last_error = None
 
-        if not itinerary:
-            raise HTTPException(
-                status_code=502,
-                detail="Gemini returned an empty response.",
-            )
+    for model in models_to_try:
+        max_retries = 2 if model == MODEL_NAME else 1
+        retry_delay = 1.0
 
-        return TravelResponse(
-            method=data.method,
-            itinerary=itinerary,
-        )
+        for attempt in range(1, max_retries + 1):
+            try:
+                print(f"Calling Gemini API with model: {model} (attempt {attempt})...")
+                response = client.models.generate_content(
+                    model=model,
+                    contents=prompt,
+                )
 
-    except Exception as exc:
-        print(f"Gemini error: {type(exc).__name__}: {exc}")
+                itinerary = response.text
 
-        raise HTTPException(
-            status_code=500,
-            detail=f"Gemini error: {type(exc).__name__}: {exc}",
-        )
+                if not itinerary:
+                    raise HTTPException(
+                        status_code=502,
+                        detail="Gemini returned an empty response.",
+                    )
+
+                return TravelResponse(
+                    method=data.method,
+                    itinerary=itinerary,
+                )
+
+            except HTTPException:
+                raise
+            except Exception as exc:
+                last_error = exc
+                print(f"Gemini model {model} attempt {attempt} failed: {type(exc).__name__}: {exc}")
+                if attempt < max_retries and any(err_code in str(exc) for err_code in ["503", "UNAVAILABLE", "429", "RESOURCE_EXHAUSTED"]):
+                    await asyncio.sleep(retry_delay)
+                    retry_delay *= 2
+                    continue
+                break
+
+    raise HTTPException(
+        status_code=503 if ("503" in str(last_error) or "UNAVAILABLE" in str(last_error)) else 500,
+        detail=f"Gemini API is currently experiencing high demand: {last_error}",
+    )
+
    

@@ -9,9 +9,12 @@
     --accent-dark: #4e5746;
     --accent-light: #e4e7dc;
     --white: #ffffff;
-
     --serif: "Playfair Display", Georgia, serif;
     --sans: "DM Sans", Arial, sans-serif;
+}
+
+[hidden] {
+    display: none !important;
 }
 
 * {
@@ -50,7 +53,6 @@ a {
     margin: 0 auto;
     padding: 0 42px;
 }
-
 
 /* HEADER */
 
@@ -111,7 +113,6 @@ a {
     background: var(--accent);
 }
 
-
 /* HERO */
 
 .hero {
@@ -148,7 +149,6 @@ a {
     font-size: 15px;
     line-height: 1.8;
 }
-
 
 /* WORKSPACE */
 
@@ -193,7 +193,6 @@ a {
     color: var(--muted);
     font-size: 12px;
 }
-
 
 /* INPUTS */
 
@@ -255,7 +254,6 @@ a {
     padding-left: 31px;
 }
 
-
 /* INTERESTS */
 
 .interest-grid {
@@ -297,7 +295,6 @@ a {
     font-size: 12px;
     font-weight: 700;
 }
-
 
 /* TRAVEL STYLE */
 
@@ -346,7 +343,6 @@ a {
 .style-option input:checked + .radio-card strong {
     color: var(--accent-dark);
 }
-
 
 /* METHODS */
 
@@ -418,7 +414,6 @@ a {
     color: white;
 }
 
-
 /* SUBMIT */
 
 .submit-button {
@@ -453,7 +448,6 @@ a {
 .submit-icon {
     font-size: 21px;
 }
-
 
 /* RESULTS */
 
@@ -495,7 +489,6 @@ a {
     min-height: 548px;
     padding: 35px;
 }
-
 
 /* EMPTY */
 
@@ -542,7 +535,6 @@ a {
     line-height: 1.7;
 }
 
-
 /* LOADING */
 
 .loading-symbol {
@@ -551,7 +543,8 @@ a {
 }
 
 @keyframes breathe {
-    0%, 100% {
+    0%,
+    100% {
         transform: scale(1);
     }
 
@@ -585,7 +578,6 @@ a {
     }
 }
 
-
 /* ERROR */
 
 .error-symbol {
@@ -605,7 +597,6 @@ a {
 .retry-button:hover {
     border-color: var(--accent);
 }
-
 
 /* ITINERARY */
 
@@ -683,7 +674,6 @@ a {
     color: var(--muted);
 }
 
-
 /* FOOTER */
 
 .footer {
@@ -697,11 +687,9 @@ a {
     letter-spacing: 1px;
 }
 
-
 /* RESPONSIVE */
 
 @media (max-width: 1000px) {
-
     .page {
         padding: 0 25px;
     }
@@ -721,9 +709,7 @@ a {
     }
 }
 
-
 @media (max-width: 600px) {
-
     .page {
         padding: 0 17px;
     }
